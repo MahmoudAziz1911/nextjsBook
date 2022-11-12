@@ -15,10 +15,8 @@ const SigninForm = () => {
       email,
       password
     }
-    console.log("options", options)
-    const res = await signIn("credentials", options)
-
-    console.log(res)
+    const res = await signIn("credentials", options);
+    console.log('Response SignIn', res);
   }
 
   return (
@@ -35,9 +33,9 @@ const SigninForm = () => {
         </Typography>
         <Box display="flex" flexDirection="column" padding={3}>
           <FormLabel sx={sxLabels}>Email</FormLabel>
-          <TextField value={email} onChange={e => setEmail(e.target.value)}  type="email" id="email" name="email" margin="normal" />
+          <TextField value={email} onChange={e => setEmail(e.target.value)} type="email" id="email" name="email" margin="normal" />
           <FormLabel sx={sxLabels}>Password</FormLabel>
-          <TextField value={password} onChange={e => setPassword(e.target.value)}  type="text" id="password" name="password" margin="normal" />
+          <TextField value={password} onChange={e => setPassword(e.target.value)} type="text" id="password" name="password" margin="normal" />
           <Button type="submit" variant="text">
             Submit
           </Button>
