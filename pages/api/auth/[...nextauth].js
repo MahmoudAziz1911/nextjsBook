@@ -12,8 +12,7 @@ export default NextAuth({
         CredentialsProvider({
             async authorize(credentials, req) {
                 connectToDataBase();
-                const email = credentials.email;
-                const password = credentials.password;
+                const { email, password } = credentials;
                 const user = await User.findOne({ email });
                 if (user) {
                     return signInUser({ password, user })
@@ -28,10 +27,11 @@ export default NextAuth({
 const signInUser = async ({ password, user }) => {
     if (!password) {
         throw new Error("Please Enter Password")
-    }
-    const isMatch = await verifyPassword(password, user.password);
-    if (!isMatch) {
-        throw new Error("Password not correct")
+    } else {
+        const isMatch = await verifyPassword(password, user.password);
+        if (!isMatch) {
+            throw new Error("Password not correct")
+        }
     }
     return user;
 } 
